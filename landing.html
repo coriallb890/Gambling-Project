@@ -7,14 +7,26 @@
 	<title>Landing Page</title>
 </head>
 <body>
-    <h1>The Landing Page</h1>
-	<a href="./cori.html">Higher or Lower</a>
+    <h1 id="title">The Gambling Project</h1>
+	<div class="grid-con">
+		<div class="cori" style="grid-area: 1/1/span 1/ span 1;">
+			<a href="./cori.html">Higher or Lower</a>
+			<p>For this game, three dice are rolled and added up together. Your job is to now guess whether the next set of three dice rolled will be higher or lower than the last number. It costs 10 coins to play and each correct guess gets you 2 coins back!</p>
+		</div>
+		<div class="ashley" style="grid-area:1/2/span 1/span 1;">	
+			<a href="./ashley.html">Memory Game</a>
+			<p>[INSERT YOUR GAME DESCRIPTION]</p>
+		</div>
+		<div class="add-btn" style="grid-area: 2/1/span 1/span 1;">
+			<p>Click the button for more coins!</p>
+			<button id="add-coins"> Button </button>
+		</div>
+		<div class="current-coins" style="grid-area: 2/2/span 1/span 1;">
+			<p id="coins">0</p>
+		</div>
+	</div>
 	<br/>
-	<a href="./ashley.html">Memory Game</a>
 	<br/>
-
-	<button id="add-coins"> Add Coins </button>
-	<p id="coins">0</p>
 </body>
 <script src="./landing.js"></script>
 </html>

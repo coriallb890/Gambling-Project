@@ -1,7 +1,27 @@
-#add-coins{
-    vertical-align: middle;
+body{
+    font-size: 20px;
 }
 
-#coins{
-    vertical-align: middle;
+.grid-con{
+    display: grid;
+    text-align: center;
+    grid-auto-columns: 1fr;
+}
+.cori, .ashley, .add-btn, .current-coins{
+    margin: 25px
+}
+#title{
+    text-align: center;
+}
+
+.add-btn{
+    text-align: right;
+}
+
+.current-coins{
+    text-align: left;
+}
+
+#add-coins{
+    margin-right: 100px;
 }
