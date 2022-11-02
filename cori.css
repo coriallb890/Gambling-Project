@@ -1,0 +1,9 @@
+body{
+    text-align: center;
+}
+
+.grid-con{
+    display: grid;
+    text-align: center;
+    grid-auto-columns: 1fr;
+}
