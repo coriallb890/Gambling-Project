@@ -3,30 +3,34 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="description" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="cori.css">
+    <link rel="stylesheet" type="text/css" href="../css/cori.css">
 	<title>Cori's Game</title>
 </head>
 <body>
 	<div class="header">
-		<h1>Higher or Lower</h1>
-		<p>Three dice will be rolled and their sum shown. Simply guess whether the next roll of 3 dice will be high or lower than the last roll. Easy! Press "play" to start! It cost 10 coins to play and you get 2 coins with each correct guess.</p>
-
+		<div id="title"><h1><span id = "green">Higher</span> or <span id="red">Lower</span></h1></div>
+		<p id="rules">Three dice will be rolled and their sum shown. Simply guess whether the next roll</br>
+		of 3 dice will be high or lower than the last roll. Easy! Press "play" to start!</br>
+		It cost 10 coins to play and you get 2 coins with each correct guess.</p>
+		</br>
 	</div>
 	<div class="grid-con">
 		<div class="back" style="grid-area: 1/1/span 1/span 1;">
-			<a href="./landing.html">Back to Home</a>
+			<a href="./p1.html">Back to Home</a>
 		</div>
 		<div class="play" style="grid-area: 1/2/span 1/span 1;">
 			<button id="play-btn">PLAY</button>
 		</div>
 		<div class="coins" style="grid-area: 1/3/span 1/span 1;">
-			<p id="coins-count">0</p>
+			<img id = "coin-img" src="../images/coin.png"></img>
+			<div id="coins-count">0</div>
 		</div>
 		<div class="dice-cup" style="grid-area: 2/2/span 1/span 1;">
-			<div class="dice">
-				<div id="d1">Dice 1</div>
-				<div id="d2">Dice 2</div>
-				<div id="d3">Dice 3</div>
+			<img id = "cup" src="../images/cup.png"></img>    
+			<div class="dice" id = "dice">
+				<div id="d1"></div>
+				<div id="d2"></div>
+				<div id="d3"></div>
 			</div>
 		</div>
 		<div class="lower" style="grid-area: 3/1/span 1/span 1;">
@@ -39,6 +43,6 @@
 			<button id="higher-btn">HIGHER</button>
 		</div>
 	</div>
+	<script src="../js/cori.js"></script>
 </body>
-<script src="./cori.js"></script>
 </html>
