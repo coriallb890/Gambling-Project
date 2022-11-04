@@ -1,0 +1,19 @@
+h1 {
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+}
+
+#mat {
+    display: grid;
+    justify-items: center;
+}
+
+.card {
+    height: 100px; 
+    width: 70px; 
+    margin: 10px; 
+}
