@@ -77,6 +77,8 @@ function shuffleCards() {
 
 function flipCard(cardElement, color) {
     if (clickCounter == 2) {
+        // bug - if you double-click a card, you get the points and can't get credit if you find the actual match
+        // need to check here to make sure the cards are different 
         if (flippedCards[0].getAttribute("id") == flippedCards[1].getAttribute("id")) {
             coins += 2
             localStorage.setItem("coins", JSON.stringify(coins))
