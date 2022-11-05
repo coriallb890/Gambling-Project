@@ -1,5 +1,4 @@
 // COLORS //
-
 const crimson = "#700517"
 const red = "#b30016"
 const brown = "#ac6d2c"
@@ -20,11 +19,16 @@ const fushia = "#b00b69"
 const slategray = "#405059"
 
 const colors = [crimson, red, brown, orange, yelloworange, yellow, springgreen, green, teal, skyblue, oceanblue, ultramarine, palepurple, violet, blush, pink, fushia, slategray]
+
+// CARDS //
 const cardCount = colors.length * 2
+let cards = []
+let clickCounter = 0
 
 // ELEMENTS //
 const mat = document.getElementById("mat")
 const playbtn = document.getElementById("play-btn")
+const cardElements = document.getElementsByClassName("card")
 
 // COINS // 
 let coins = 0
@@ -44,30 +48,36 @@ function render(count){
 // INITIAL SHUFFLE //
 function shuffleCards() {
     let tempHTML = ""
-    shuffledColors = []
+    cards = []
 
     for (let color of colors) {
-        shuffledColors.push(color)
-        shuffledColors.push(color)
+        cards.push(color)
+        cards.push(color)
     }
 
     for (let i = cardCount - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [shuffledColors[i], shuffledColors[j]] = [shuffledColors[j], shuffledColors[i]];
+        [cards[i], cards[j]] = [cards[j], cards[i]];
     }
 
     let row = 0
-    let counter = 0
+    let col = 0
 
     for (let i=0; i<cardCount; i++) {
-        counter++
-        if (counter % 6 == 0) {
+        col++
+        if (col % 6 == 0) {
             row++
         }
-        tempHTML += `<div class="card" id=${shuffledColors[i]} style="background-color:${shuffledColors[i]}; grid-row: ${row}"></div>`
+        tempHTML += `<div class="card" id=${cards[i]} style="background-color:gray; grid-row: ${row}" onClick="flipCard(this, '${cards[i]}');"></div>`
     }
 
     mat.innerHTML = tempHTML 
+}
+
+function flipCard(cardElement, color) {
+    console.log(cardElement)
+    clickCounter++
+    cardElement.style.backgroundColor = color;
 }
 
 // START PLAYING //

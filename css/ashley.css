@@ -10,10 +10,12 @@ h1 {
 #mat {
     display: grid;
     justify-items: center;
+    background-color: beige; 
 }
 
 .card {
     height: 100px; 
     width: 70px; 
     margin: 10px; 
+    border: solid white 1px; 
 }
