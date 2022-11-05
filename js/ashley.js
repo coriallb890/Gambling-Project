@@ -24,6 +24,7 @@ const colors = [crimson, red, brown, orange, yelloworange, yellow, springgreen, 
 const cardCount = colors.length * 2
 let cards = []
 let clickCounter = 0
+let flippedCards = []
 
 // ELEMENTS //
 const mat = document.getElementById("mat")
@@ -75,20 +76,36 @@ function shuffleCards() {
 }
 
 function flipCard(cardElement, color) {
-    console.log(cardElement)
+    if (clickCounter == 2) {
+        if (flippedCards[0].getAttribute("id") == flippedCards[1].getAttribute("id")) {
+            coins += 2
+            localStorage.setItem("coins", JSON.stringify(coins))
+            render(coins)
+            flippedCards[0].removeAttribute("onclick")
+            flippedCards[1].removeAttribute("onclick")
+        }
+        else {
+            // minor bug - if you click an already-flipped card, it will turn gray because it somehow still gets added to the flippedCards array
+            flippedCards[0].style.backgroundColor = "gray"
+            flippedCards[1].style.backgroundColor = "gray"
+        }
+        flippedCards = []
+        clickCounter = 0 
+    }
     clickCounter++
-    cardElement.style.backgroundColor = color;
+    cardElement.style.backgroundColor = color
+    flippedCards.push(cardElement)
 }
 
 // START PLAYING //
 playbtn.addEventListener("click", function(){
-    /*if(coins <= 10){
+    if(coins <= 20) {
         alert("Not enough coins! Go back to home for more")
     }
-    else{
-        coins -= 10
+    else {
+        coins -= 20
         localStorage.setItem("coins", JSON.stringify(coins))
-        render(coins)*/
+        render(coins)
         shuffleCards()
-    //}
+    }
 })
