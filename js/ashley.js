@@ -1,5 +1,4 @@
 // COLORS //
-
 const crimson = "#700517"
 const red = "#b30016"
 const brown = "#ac6d2c"
@@ -20,11 +19,17 @@ const fushia = "#b00b69"
 const slategray = "#405059"
 
 const colors = [crimson, red, brown, orange, yelloworange, yellow, springgreen, green, teal, skyblue, oceanblue, ultramarine, palepurple, violet, blush, pink, fushia, slategray]
+
+// CARDS //
 const cardCount = colors.length * 2
+let cards = []
+let clickCounter = 0
+let flippedCards = []
 
 // ELEMENTS //
 const mat = document.getElementById("mat")
 const playbtn = document.getElementById("play-btn")
+const cardElements = document.getElementsByClassName("card")
 
 // COINS // 
 let coins = 0
@@ -44,41 +49,65 @@ function render(count){
 // INITIAL SHUFFLE //
 function shuffleCards() {
     let tempHTML = ""
-    shuffledColors = []
+    cards = []
 
     for (let color of colors) {
-        shuffledColors.push(color)
-        shuffledColors.push(color)
+        cards.push(color)
+        cards.push(color)
     }
 
     for (let i = cardCount - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [shuffledColors[i], shuffledColors[j]] = [shuffledColors[j], shuffledColors[i]];
+        [cards[i], cards[j]] = [cards[j], cards[i]];
     }
 
     let row = 0
-    let counter = 0
+    let col = 0
 
     for (let i=0; i<cardCount; i++) {
-        counter++
-        if (counter % 6 == 0) {
+        col++
+        if (col % 6 == 0) {
             row++
         }
-        tempHTML += `<div class="card" id=${shuffledColors[i]} style="background-color:${shuffledColors[i]}; grid-row: ${row}"></div>`
+        tempHTML += `<div class="card" id=${cards[i]} style="background-color:gray; grid-row: ${row}" onClick="flipCard(this, '${cards[i]}');"></div>`
     }
 
     mat.innerHTML = tempHTML 
 }
 
+function flipCard(cardElement, color) {
+    if (clickCounter == 2) {
+        // bug - if you double-click a card, you get the points and can't get credit if you find the actual match
+        // need to check here to make sure the cards are different 
+        if (flippedCards[0].getAttribute("id") == flippedCards[1].getAttribute("id")) {
+            coins += 2
+            localStorage.setItem("coins", JSON.stringify(coins))
+            render(coins)
+            flippedCards[0].removeAttribute("onclick")
+            flippedCards[1].removeAttribute("onclick")
+        }
+        else {
+            // minor bug - if you click an already-flipped card, it will turn gray because it somehow still gets added to the flippedCards array
+            flippedCards[0].style.backgroundColor = "gray"
+            flippedCards[1].style.backgroundColor = "gray"
+        }
+        flippedCards = []
+        clickCounter = 0 
+    }
+    clickCounter++
+    cardElement.style.backgroundColor = color
+    flippedCards.push(cardElement)
+}
+
 // START PLAYING //
 playbtn.addEventListener("click", function(){
-    /*if(coins <= 10){
+    if(coins <= 20) {
         alert("Not enough coins! Go back to home for more")
     }
-    else{
-        coins -= 10
+    else {
+        coins -= 20
         localStorage.setItem("coins", JSON.stringify(coins))
-        render(coins)*/
+        render(coins)
         shuffleCards()
-    //}
+    }
 })
