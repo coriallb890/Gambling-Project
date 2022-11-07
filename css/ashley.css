@@ -9,6 +9,9 @@ body {
 }
 
 .heading {
+    font-family: 'Chewy', Impact, cursive;
+    font-size: 1.7em;
+    letter-spacing: 0.3em;
     text-align: center;
     border: 2px solid; 
     border-radius: 10px; 
