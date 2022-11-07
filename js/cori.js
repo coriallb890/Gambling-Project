@@ -5,6 +5,8 @@ let d3 = 0
 let sum = 0
 let lastSum = 0
 let play = false
+let highScore = 0
+let score = 0
 
 const currCoins = document.getElementById("coins-count")
 const playbtn = document.getElementById("play-btn")
@@ -16,12 +18,28 @@ const sd3 = document.getElementById("d3")
 const total = document.getElementById("sum")
 const cup = document.getElementById("cup")
 const dice = document.getElementById("dice")
+const gameOver = document.getElementById("game-over")
+const fade = document.getElementById("fade-back")
+const closebtn = document.getElementById("close-btn")
+const text = document.getElementById("pop-text")
+const shake = document.getElementById("shake-dice")
+
+const scoreText = document.getElementById("current-score")
+const highScoreText = document.getElementById("current-high-score")
+const gameOverText = document.getElementById("pop-text")
+
 
 let fromLocal = JSON.parse(localStorage.getItem("coins"))
+let fromLocalHighScore = JSON.parse(localStorage.getItem("score"))
 
 if(fromLocal){
     coins = fromLocal
     render(coins)
+}
+
+if(fromLocalHighScore){
+    highScore = fromLocalHighScore
+    highScoreText.innerHTML = highScore
 }
 
 function loadDice(diceNum){
@@ -54,11 +72,15 @@ function resetGame(){
     playbtn.style.backgroundColor = "limegreen"
     resetAnimation()
     total.innerHTML = 0
+    score = 0
+    scoreText.innerHTML = 0
+    gameOverText.innerHTML = ""
 }
 
 function render(count){
     currCoins.innerHTML = count
 }
+
 
 function diceRoll(){
     return Math.floor(Math.random() * 6) + 1
@@ -92,18 +114,19 @@ playbtn.addEventListener("click", function(){
         coins -= 10
         localStorage.setItem("coins", JSON.stringify(coins))
         render(coins)
-        cup.style.animation = "test 1s linear normal"
-        setTimeout(roll, 1000)
+        cup.style.animation = "shake-cup 2s normal"
+        shake.play()
+        setTimeout(roll, 2000)
     }
 })
-
 
 lowbtn.addEventListener("click", function(){
     if(play){
         resetAnimation()
         lastSum = sum
-        cup.style.animation = "test 1s linear normal"
-        setTimeout(checkLow, 1000)
+        cup.style.animation = "shake-cup 2s normal"
+        shake.play()
+        setTimeout(checkLow, 2000)
     }
     else{
         alert("Press play first!")
@@ -114,9 +137,9 @@ highbtn.addEventListener("click", function(){
     if(play){
         resetAnimation()
         lastSum = sum
-        cup.style.animation = "test 1s linear normal"
-        setTimeout(checkHigh, 1000)
-        
+        cup.style.animation = "shake-cup 2s normal"
+        shake.play()
+        setTimeout(checkHigh, 2000)
     }
     else{
         alert("Press play first!")
@@ -132,24 +155,51 @@ function addCoins(){
 function checkHigh(){
     roll()
     if(sum < lastSum){
-        alert("Wrong! " + sum + " is lower than " + lastSum)
+        gameOverPopup("higher")
         play = false
-        resetGame()
     }
     else{
         addCoins()
+        score += 1
+        scoreText.innerHTML = score
     }
 }
 function checkLow(){
     roll()
     if(sum > lastSum){
-        alert("Wrong! " + sum + " is higher than " + lastSum)
+        gameOverPopup("lower")
         play = false
-        resetGame()
     }
     else{
         addCoins()
+        score += 1
+        scoreText.innerHTML = score
     }
 }
 
+closebtn.addEventListener("click", function(){
+    gameOver.style.display = "none"
+    fade.style.display = "none"
+    resetGame()
+})
 
+function gameOverPopup(option){
+    gameOver.style.display = "block"
+    fade.style.display = "block"
+    if(option == "higher"){
+        gameOverText.innerHTML += '<h2>' + sum + ' is lower than ' + lastSum + '</h2>'
+    }
+    else{
+        gameOverText.innerHTML += '<h2>' + sum + ' is lower than ' + lastSum + '</h2>'
+    }
+    gameOverText.innerHTML += '<h2>You guessed ' + score + ' times in a row and earned ' + score*2 + ' coins.</h2>'
+    if(score > highScore){
+        gameOverText.innerHTML += '<h2>You set a new high score!</h2>'
+        localStorage.setItem("score", JSON.stringify(score))
+        highScoreText.innerHTML = score
+        gameOverText.innerHTML += '<h2>Your current high score is ' + score
+    }
+    else{
+        gameOverText.innerHTML += '<h2>Your current high score is ' + highScore
+    }
+}

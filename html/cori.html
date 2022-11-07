@@ -14,18 +14,31 @@
 		It cost 10 coins to play and you get 2 coins with each correct guess.</p>
 		</br>
 	</div>
+	<div id = "game-over">
+		<h1>Whoops!</h1>
+		<div id="pop-text">
+		</div>
+		<button id = "close-btn">Close</button>
+	</div>
+	<div id = "fade-back"></div>
 	<div class="grid-con">
 		<div class="back" style="grid-area: 1/1/span 1/span 1;">
 			<a href="./p1.html">Back to Home</a>
 		</div>
-		<div class="play" style="grid-area: 1/2/span 1/span 1;">
+		<div class="score" style="grid-area: 1/2/span 1/span 1;">
+			<div>Score: <span id="current-score">0</span></div>
+		</div>
+		<div class="play" style="grid-area: 1/3/span 1/span 1;">
 			<button id="play-btn">PLAY</button>
 		</div>
-		<div class="coins" style="grid-area: 1/3/span 1/span 1;">
+		<div class="high-score" style="grid-area: 1/4/span 1/span 1;">
+			<div>High score: <span id="current-high-score">0</span></div>
+		</div>
+		<div class="coins" style="grid-area: 1/5/span 1/span 1;">
 			<img id = "coin-img" src="../images/coin.png"></img>
 			<div id="coins-count">0</div>
 		</div>
-		<div class="dice-cup" style="grid-area: 2/2/span 1/span 1;">
+		<div class="dice-cup" style="grid-area: 2/3/span 1/span 1;">
 			<img id = "cup" src="../images/cup.png"></img>    
 			<div class="dice" id = "dice">
 				<div id="d1"></div>
@@ -33,16 +46,17 @@
 				<div id="d3"></div>
 			</div>
 		</div>
-		<div class="lower" style="grid-area: 3/1/span 1/span 1;">
+		<div class="lower" style="grid-area: 3/2/span 1/span 1;">
 			<button id="lower-btn">LOWER</button>
 		</div>
-		<div class="dice-sum" style="grid-area: 3/2/span 1/span 1;">
+		<div class="dice-sum" style="grid-area: 3/3/span 1/span 1;">
 			<p id="sum">0</p>
 		</div>
-		<div class="higher" style="grid-area: 3/3/span 1/span 1;">
+		<div class="higher" style="grid-area: 3/4/span 1/span 1;">
 			<button id="higher-btn">HIGHER</button>
 		</div>
 	</div>
+	<audio id="shake-dice" src="../sound/shake.mp3" preload="auto"></audio>
 	<script src="../js/cori.js"></script>
 </body>
 </html>
