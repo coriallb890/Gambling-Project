@@ -1,3 +1,5 @@
+// Written by Cori Allbritton //
+
 let coins = 0
 let d1 = 0
 let d2 = 0
