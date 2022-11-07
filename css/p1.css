@@ -1,27 +1,78 @@
-body{
+body {
     font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: saddlebrown;
+    background-image: url("../images/wood.jpg");
+    color: goldenrod;
 }
 
-.grid-con{
+.grid-con {
     display: grid;
     text-align: center;
     grid-auto-columns: 1fr;
 }
-.cori, .ashley, .add-btn, .current-coins{
-    margin: 25px
+
+.cori, .ashley, .add-btn, .current-coins {
+    margin-left: 20px;
+    margin-right: 20px;
 }
-#title{
+
+#title {
     text-align: center;
+    font-family: 'Monoton', Impact, sans-serif;
+    font-size: 3.5em;
+    font-weight: normal;
+    color: gold;
+    margin-top: 30px;
 }
 
-.add-btn{
+a {
+    color: darkslateblue;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 10px;
+}
+
+a:hover {
+    color: blueviolet;
+}
+
+.add-btn {
     text-align: right;
+    font-size: 25px;
+    color: white;
 }
 
-.current-coins{
-    text-align: left;
+button {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
+    font-size: 20px;
+    background-color: brown;
+    color: goldenrod;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 60px;
 }
 
-#add-coins{
+button:hover {
+    background-color: red;
+    color: gold;
+}
+
+.current-coins {
+    margin-top: 10px;
+    display: flex;
+    border: 2px solid;
+    border-radius: 10px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; 
+    width: 50px;
+    height: 30px;
+}
+
+#add-coins {
     margin-right: 100px;
 }
