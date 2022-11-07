@@ -1,3 +1,5 @@
+// Written by Ashley Palmer //
+
 // COLORS //
 const crimson = "#700517"
 const red = "#b30016"

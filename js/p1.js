@@ -1,3 +1,5 @@
+// Written by Cori Allbritton //
+
 let coins = 0;
 
 const addBtn = document.getElementById("add-coins")
