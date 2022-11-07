@@ -69,16 +69,18 @@ function shuffleCards() {
         if (col % 6 == 0) {
             row++
         }
-        tempHTML += `<div class="card" id=${cards[i]} style="background-color:slategray; grid-row: ${row}" onClick="flipCard(this, '${cards[i]}');"></div>`
+        tempHTML += `<div class="card" id=${cards[i]} style="background-color:gray; grid-row: ${row}" onClick="flipCard(this, '${cards[i]}');"></div>`
     }
 
     mat.innerHTML = tempHTML 
 }
 
 function flipCard(cardElement, color) {
+    if (clickCounter == 1 && flippedCards[0].isSameNode(cardElement)) {
+        return
+    }
+
     if (clickCounter == 2) {
-        // bug - if you double-click a card, you get the points and can't get credit if you find the actual match
-        // need to check here to make sure the cards are different 
         if (flippedCards[0].getAttribute("id") == flippedCards[1].getAttribute("id")) {
             coins += 2
             localStorage.setItem("coins", JSON.stringify(coins))
@@ -87,9 +89,8 @@ function flipCard(cardElement, color) {
             flippedCards[1].removeAttribute("onclick")
         }
         else {
-            // minor bug - if you click an already-flipped card, it will turn gray because it somehow still gets added to the flippedCards array
-            flippedCards[0].style.backgroundColor = "slategray"
-            flippedCards[1].style.backgroundColor = "slategray"
+            flippedCards[0].style.backgroundColor = "gray"
+            flippedCards[1].style.backgroundColor = "gray"
         }
         flippedCards = []
         clickCounter = 0 
