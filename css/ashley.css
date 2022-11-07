@@ -1,21 +1,87 @@
-h1 {
+/* Ashley Palmer */
+
+body {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
+    font-size: 1.3em;
+    color: darkslateblue; 
+    background-image: url("../images/paint.jpg");
+    margin: 20px;
+}
+
+.heading {
+    font-family: 'Chewy', Impact, cursive;
+    font-size: 1.7em;
+    letter-spacing: 0.3em;
     text-align: center;
+    border: 2px solid; 
+    border-radius: 10px; 
+    background: rgb(255, 255, 255, 0.5)
 }
 
 .navbar {
+    margin: 10px;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+}
+
+button {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
+    font-size: 1.3em;
+    background-color: palegreen;
+    color: green;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 60px;
+}
+
+button:hover {
+    background-color: rgb(119, 231, 119);
+    color: rgb(1, 101, 1);
+}
+
+a {
+    color: darkslateblue;
+    background-color: white;
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 10px;
+}
+
+a:hover {
+    color: blueviolet;
+}
+
+.coin-container {
+    display: flex;
+    border: 2px solid;
+    border-radius: 10px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; 
+    height: 30px;
 }
 
 #mat {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding: 10px;
+    min-height: 200px;
     display: grid;
     justify-items: center;
-    background-color: beige; 
+    background-image: url("../images/mat.jpg"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: solid 2px; 
+    border-radius: 10px;
 }
 
 .card {
     height: 100px; 
     width: 70px; 
     margin: 10px; 
-    border: solid white 1px; 
+    border: solid white 2px; 
+    box-shadow: 2px 2px 2px black; 
 }

@@ -13,12 +13,12 @@ const oceanblue = "#004aad"
 const ultramarine = "#670bf5"
 const palepurple = "#c4a7e6"
 const violet = "#683f85"
-const blush = "#f7cacd"
+const blush = "#f5a2a7"
 const pink = "#d461a6"
 const fushia = "#b00b69"
-const slategray = "#405059"
+const darkbluegray = "#1b2c36"
 
-const colors = [crimson, red, brown, orange, yelloworange, yellow, springgreen, green, teal, skyblue, oceanblue, ultramarine, palepurple, violet, blush, pink, fushia, slategray]
+const colors = [crimson, red, brown, orange, yelloworange, yellow, springgreen, green, teal, skyblue, oceanblue, ultramarine, palepurple, violet, blush, pink, fushia, darkbluegray]
 
 // CARDS //
 const cardCount = colors.length * 2
@@ -69,7 +69,7 @@ function shuffleCards() {
         if (col % 6 == 0) {
             row++
         }
-        tempHTML += `<div class="card" id=${cards[i]} style="background-color:gray; grid-row: ${row}" onClick="flipCard(this, '${cards[i]}');"></div>`
+        tempHTML += `<div class="card" id=${cards[i]} style="background-color:slategray; grid-row: ${row}" onClick="flipCard(this, '${cards[i]}');"></div>`
     }
 
     mat.innerHTML = tempHTML 
@@ -88,8 +88,8 @@ function flipCard(cardElement, color) {
         }
         else {
             // minor bug - if you click an already-flipped card, it will turn gray because it somehow still gets added to the flippedCards array
-            flippedCards[0].style.backgroundColor = "gray"
-            flippedCards[1].style.backgroundColor = "gray"
+            flippedCards[0].style.backgroundColor = "slategray"
+            flippedCards[1].style.backgroundColor = "slategray"
         }
         flippedCards = []
         clickCounter = 0 
@@ -101,7 +101,7 @@ function flipCard(cardElement, color) {
 
 // START PLAYING //
 playbtn.addEventListener("click", function(){
-    if(coins <= 20) {
+    if(coins < 20) {
         alert("Not enough coins! Go back to home for more")
     }
     else {
